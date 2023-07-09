@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+		<!-- jQuery library -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+
+		<!-- Latest compiled JavaScript -->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+		
+		
+	</head>
+	<body>
+	<div>
+		
+			<div style="background-color:brown;min-height:100px;">
+				<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+					<label style="color:white;font-size:40px;padding-top:15px;">HD-Predictor</label>
+				</div>
+				
+				<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12" style="text-align:right;padding-top:35px;">
+					<a style="font-size:20px;" href="prediction">Click for Prediction </a>
+				</div>
+				
+			</div>
+			
+			<div style="min-height:600px;">
+			<form id="upload-file" method="post" enctype="multipart/form-data">
+					Select the Datasheet
+					<input type="file" name="prod_mas" accept=".csv">
+				</form>
+				<input id="loaddata" value="Load Dataset" type="submit" class="btn btn-primary form-control" />
+			</div>
+			
+			
+			<div style="background-color:#d0c94f;min-height:50px;text-align:center;">
+				<label style="color:black;font-size:20px;padding-top:15px;">All Rights Reserved to Flask Workshop</label>
+			</div>
+			
+		</div>
+		
+	</body>
+	<script>
+	$("#loaddata").click(function(){
+		 var form_data = new FormData($('#upload-file')[0]);
+        $.ajax({
+            type: 'POST',
+            url: '/uploadajax',
+            data: form_data,
+            contentType: false,
+            cache: false,
+            processData: false,
+            success: function(data) {
+                console.log('Success!');
+				alert('Data stored successfully');
+            },
+        });
+	});
+	</script>
+</html>
